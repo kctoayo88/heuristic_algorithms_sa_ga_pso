@@ -36,6 +36,9 @@ For details:
 python main.py -h
 ```  
   
+![demo](https://github.com/kctoayo88/heuristic_algorithms_sa_ga_pso/blob/master/readme/demo.png)
+  
+  
 ## Reference
 
 [1] Simulated annealing (https://en.wikipedia.org/wiki/Simulated_annealing)  

@@ -16,7 +16,7 @@ class SA(object):
 
   def slover(self):
     # initialize the x
-    x = 10 * (2 * np.random.rand() - 1)
+    x = np.random.uniform(self.xrange[0], self.xrange[1])
     now_t = self.init_T
     print ('Init x:        ', x)
 
@@ -27,7 +27,7 @@ class SA(object):
         for i in np.arange(1, self.iter_L):
             fun_val = self.fitness_function(x)
             # randomly generate new x within the range
-            x_new = x + (2 * np.random.rand() - 1)
+            x_new = np.random.uniform(self.xrange[0], self.xrange[1])
             if x_new >= self.xrange[0] and x_new <= self.xrange[1]:
                 fun_new = self.fitness_function(x_new)
                 res = fun_new - fun_val

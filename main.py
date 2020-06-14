@@ -3,30 +3,30 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
-x_range = [-10, 10]
+x_range = [-7, 7]
 
 # SA parameters
 init_T = 1000       # initial temperature
 min_T = 1           # minimum of temperature
 delta = 0.99        # coefficient of cooling
-iter_N_SA = 500     # number of iteration
+iter_N_SA = 1000    # number of iteration
 
 # GA parameters
 pop_size_GA = 50    # size of population
 pcrossover = 0.5    # probability of crossover
-pmutation = 0.01    # probability of mutation
+pmutation = 0.5     # probability of mutation
 iter_N_GA = 100     # number of iteration
 
 # PSO parameters
-pop_size_PSO = 10   # size of population
+pop_size_PSO = 50   # size of population
 w = 0.1             # weight
 c1 = 0.5            # coefficient of p_best
 c2 = 2              # coefficient of g_best
-iter_N_PSO = 150    # number of iteration
+iter_N_PSO = 100    # number of iteration
 
 # objective funtion
 def fitness_function(x):
-  return (x - 2) * (x + 3) * (x + 8) * (x - 9)
+  return 2 * np.cos(x) - x + x ** 2 / 10
 
 def main(algorithm, plot):
   if plot == 'y':
@@ -62,13 +62,13 @@ def main(algorithm, plot):
   optimal_y = fitness_function(optimal_x)
   print('Optimal y:     ', optimal_y)
 
-  plt.plot(optimal_x, optimal_y, '*r')
+  plt.plot(optimal_x, optimal_y, '*r', ms = 10)
   plt.ioff()
   plt.show()
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
-  parser.add_argument('-algorithm', type = str, default = 'sa', help = 'choose a algorithm (SA / GA / PSO)')
+  parser.add_argument('-algorithm', type = str, default = 'pso', help = 'choose a algorithm (sa / ga / pso)')
   parser.add_argument('-plot', type = str, default = 'y', help = 'show the animation (y / n)')
   args = parser.parse_args()
   main(args.algorithm, args.plot)
