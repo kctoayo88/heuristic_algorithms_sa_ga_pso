@@ -8,8 +8,9 @@ x_range = [-7, 7]
 # SA parameters
 init_T = 1000       # initial temperature
 min_T = 1           # minimum of temperature
-delta = 0.99        # coefficient of cooling
-iter_N_SA = 1000    # number of iteration
+delta = 0.99        # cooling coefficient
+k = 0.1             # scaling coefficient
+iter_N_SA = 100     # number of iteration
 
 # GA parameters
 pop_size_GA = 50    # size of population
@@ -45,7 +46,7 @@ def main(algorithm, plot):
   # implement the algorithms
   if algorithm == 'sa':
     from sa import SA
-    sa = SA(x_range, fitness_function, iter_N_SA, min_T, iter_N_SA, delta, _plot)
+    sa = SA(x_range, fitness_function, iter_N_SA, min_T, iter_N_SA, delta, k, _plot)
     optimal_x = sa.slover()
  
   if algorithm == 'ga':
@@ -68,7 +69,7 @@ def main(algorithm, plot):
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
-  parser.add_argument('-algorithm', type = str, default = 'pso', help = 'choose a algorithm (sa / ga / pso)')
-  parser.add_argument('-plot', type = str, default = 'y', help = 'show the animation (y / n)')
+  parser.add_argument('-algorithm', type = str, default = 'sa', help = 'choose a algorithm (sa / ga / pso)')
+  parser.add_argument('-plot', type = str, default = 'n', help = 'show the animation (y / n)')
   args = parser.parse_args()
   main(args.algorithm, args.plot)

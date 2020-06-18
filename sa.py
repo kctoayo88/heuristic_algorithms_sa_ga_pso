@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import time
 
 class SA(object):
-  def __init__(self, x_range, fitness_function, init_T, min_T, iter_L, delta, Plot):
+  def __init__(self, x_range, fitness_function, init_T, min_T, iter_L, delta, k, Plot):
     self.xrange = x_range
     self.fitness_function = fitness_function
     self.init_T = init_T
@@ -13,6 +13,7 @@ class SA(object):
     self.iter_L = iter_L
     self.delta = delta
     self.plot = Plot 
+    self.k = k
 
   def slover(self):
     # initialize the x
@@ -27,7 +28,7 @@ class SA(object):
         for i in np.arange(1, self.iter_L):
             fun_val = self.fitness_function(x)
             # randomly generate new x within the range
-            x_new = np.random.uniform(self.xrange[0], self.xrange[1])
+            x_new = x + np.random.uniform(self.xrange[0] *  self.k, self.xrange[1] * self.k)
             if x_new >= self.xrange[0] and x_new <= self.xrange[1]:
                 fun_new = self.fitness_function(x_new)
                 res = fun_new - fun_val
